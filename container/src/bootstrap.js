@@ -7,7 +7,7 @@ function mount(el) {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  const el = document.querySelector('#dev-{{applicationName}}')
+  const el = document.querySelector('#root')
 
   el && mount(el)
 }
