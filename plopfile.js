@@ -28,6 +28,16 @@ const genActions = f => {
 genActions(templatesDir)
 
 module.exports = plop => {
+  plop.setHelper('upperCapital', (txt) => {
+    if (!txt) {
+      return ''
+    }
+
+    const [first, ...rest] = txt
+
+    return `${first.toUpperCase()}${rest.join('')}`
+  });
+
   plop.setGenerator('application', {
     description: '创建微服务',
     prompts: [{
