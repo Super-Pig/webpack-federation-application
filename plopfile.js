@@ -55,4 +55,8 @@ module.exports = plop => {
     }],
     actions: getReactActions()
   })
+
+  plop.setGenerator('vue app', {
+    description: '创建 Vue 微服务',
+  })
 }
