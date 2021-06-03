@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const actions = []
-const templatesDir = 'plop-templates'
+const templatesDir = path.join('plop-templates', 'react')
 
 const genActions = f => {
   const stat = fs.statSync(f)
@@ -38,8 +38,8 @@ module.exports = plop => {
     return `${first.toUpperCase()}${rest.join('')}`
   });
 
-  plop.setGenerator('application', {
-    description: '创建微服务',
+  plop.setGenerator('react app', {
+    description: '创建React微服务',
     prompts: [{
       type: 'input',
       name: 'applicationName',
