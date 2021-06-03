@@ -1,31 +1,35 @@
 const fs = require('fs')
 const path = require('path')
 
-const actions = []
-const templatesDir = path.join('plop-templates', 'react')
+const getReactActions = () => {
+  const actions = []
+  const templatesDir = path.join('plop-templates', 'react')
 
-const genActions = f => {
-  const stat = fs.statSync(f)
-
-  if (stat.isDirectory()) {
-    const items = fs.readdirSync(f)
-
-    items.forEach(item => {
-      genActions(path.join(f, item))
-    })
-  } else {
-    const filename = path.basename(f)
-    const dirname = path.dirname(f)
-
-    actions.push({
-      type: 'add',
-      path: path.join('{{applicationName}}', dirname.replace(templatesDir, ''), filename.replace('.hbs', '')),
-      templateFile: path.join(dirname, filename)
-    })
+  const next = f => {
+    const stat = fs.statSync(f)
+  
+    if (stat.isDirectory()) {
+      const items = fs.readdirSync(f)
+  
+      items.forEach(item => {
+        next(path.join(f, item))
+      })
+    } else {
+      const filename = path.basename(f)
+      const dirname = path.dirname(f)
+  
+      actions.push({
+        type: 'add',
+        path: path.join('{{applicationName}}', dirname.replace(templatesDir, ''), filename.replace('.hbs', '')),
+        templateFile: path.join(dirname, filename)
+      })
+    }
   }
-}
 
-genActions(templatesDir)
+  next(templatesDir)
+
+  return actions
+}
 
 module.exports = plop => {
   plop.setHelper('upperCapital', (txt) => {
@@ -39,7 +43,7 @@ module.exports = plop => {
   });
 
   plop.setGenerator('react app', {
-    description: '创建React微服务',
+    description: '创建 React 微服务',
     prompts: [{
       type: 'input',
       name: 'applicationName',
@@ -49,6 +53,6 @@ module.exports = plop => {
       name: 'port',
       message: 'webpack dev server port'
     }],
-    actions
+    actions: getReactActions()
   })
 }
