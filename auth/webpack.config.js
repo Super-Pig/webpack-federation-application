@@ -5,10 +5,10 @@ const packageJSON = require('./package.json')
 module.exports = {
   mode: 'development',
   output: {
-    publicPath: 'http://localhost:{{port}}/'
+    publicPath: 'http://localhost:8082/'
   },
   devServer: {
-    port: {{port}},
+    port: 8082,
     historyApiFallback: true
   },
   module: {
@@ -26,10 +26,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: '{{applicationName}}',
+      name: 'auth',
       filename: 'remoteEntry.js',
       exposes: {
-        './{{upperCapital applicationName}}App': './src/bootstrap.js'
+        './AuthApp': './src/bootstrap.js'
       },
       shared: packageJSON.dependencies
     }),
