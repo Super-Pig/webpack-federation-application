@@ -18,8 +18,16 @@
 
 2. 如果不同的应用程序需要传达有关路由的相关信息，应该尽可能的使用通用的方式，memoryHistory 在 React 和 Vue 中都有提供
 
-### 使用 plop 生成微应用模板
+## 使用 plop 生成微应用模板
 
 ```
 npm run plop
 ```
+
+## 项目启动
+
+marketing 服务：`cd marketing && npm start`
+
+auth 服务：`cd auth && npm start`
+
+container 服务：`cd container && npm start`
