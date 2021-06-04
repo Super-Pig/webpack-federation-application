@@ -11,6 +11,7 @@ const history = createBrowserHistory()
 // 组件懒加载
 const MarketingApp = lazy(() => import('./components/MarketingApp'))
 const AuthApp = lazy(() => import('./components/AuthApp'))
+const DashboardApp = lazy(() => import('./components/DashboardApp'))
 
 const App = () => {
   const [status, setStatus] = useState(false)
@@ -28,6 +29,9 @@ const App = () => {
         <Switch>
           <Route path='/auth/signin'>
             <AuthApp setStatus={setStatus} />
+          </Route>
+          <Route path='/dashboard'>
+            <DashboardApp />
           </Route>
           <Route path='/'>
             <MarketingApp />
