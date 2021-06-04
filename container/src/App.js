@@ -27,7 +27,7 @@ const App = () => {
       <Suspense fallback={<Progress />}>
         <Switch>
           <Route path='/auth/signin'>
-            <AuthApp />
+            <AuthApp setStatus={setStatus} />
           </Route>
           <Route path='/'>
             <MarketingApp />

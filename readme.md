@@ -30,4 +30,6 @@ marketing 服务：`cd marketing && npm start`
 
 auth 服务：`cd auth && npm start`
 
+dashboard 服务 `cd dashboard && npm start`
+
 container 服务：`cd container && npm start`
