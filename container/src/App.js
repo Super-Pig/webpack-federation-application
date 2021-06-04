@@ -1,8 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-// import MarketingApp from './components/MarketingApp'
-// import AuthApp from './components/AuthApp'
 import Header from './components/Header'
 import Progress from './components/Progress'
 
@@ -31,6 +29,7 @@ const App = () => {
             <AuthApp setStatus={setStatus} />
           </Route>
           <Route path='/dashboard'>
+            {!status && <Redirect to='/'></Redirect>}
             <DashboardApp />
           </Route>
           <Route path='/'>
